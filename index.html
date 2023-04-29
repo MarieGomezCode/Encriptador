@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Encripador Challenge 1</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="icon" href="img/pen.png">
+        <link rel="stylesheet" href="estilon.css"> 
+    </head>
+    <body>
+        <div class="hd" >
+             <img class="Logo" src="img/Vector.png" alt="log de alura">
+         <h1 class="titulo">Encriptador de texto</h1>
+         </div>
+
+        <main class="caja">          
+                            
+                <section class="seccion1">                
+                    <textarea class="inputText" cols="40" rows="6" placeholder=" Escriba aqui su texto"></textarea>                      
+                    <div class="bot"  >
+                        <p class="advertencia"><img src="img/Aviso.png" width="12px"  height="13px" > Solo letras minusculas y sin acentos</p>  
+                    <button  id="BtnEncriptador" onclick="encriptar()">Encriptar</button>
+                    <button id="BtnDesencriptador" onclick="desencriptar()" > Desencriptar</button>   
+                    </div>
+              
+                </section>
+                           
+                <section class="seccion2"> 
+                    
+                     <div class="whit" >
+                        <img class="muneco" src="img/Muñeco.png" alt="muñeco">
+                        <p class="texto1">Ningun texto fue encontrado</p>
+                        <textarea class="mensaje" cols="40" rows="5" placeholder=" Encripte o desencripte aqui"></textarea><br>
+                        <button id="copiar" onclick="copiar()"> Copiar</button>    
+                     </div> 
+                               
+                
+                </section>
+
+            </main>  
+
+            <footer>
+                <h1>©Creado por Angela Gomez, 2023.</h1>
+            </footer>
+        
+        
+        <script src="script.js" type="text/javascript"> </script>
+    
+    </body>
