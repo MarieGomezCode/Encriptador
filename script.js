@@ -1,61 +1,63 @@
+const numCount = 100; // Número de elementos a mostrar
+const speed = 20; // Velocidad de movimiento de los números (en píxeles)
+const fontSize = 16; // Tamaño de fuente inicial (en píxeles)
 
-/*La letra "e" es convertida para "enter"
-La letra "i" es convertida para "imes"
-La letra "a" es convertida para "ai"
-La letra "o" es convertida para "ober"
-La letra "u" es convertida para "ufat"
-*/
+// Crear elementos de números
+for (let i = 0; i < numCount; i++) {
+    const numElement = document.createElement('span');
+    numElement.innerText = Math.floor(Math.random() * 10); // Número aleatorio del 0 al 9
+    numElement.style.position = 'absolute';
+    numElement.style.left = `${Math.random() * 100}vw`; // Posición horizontal aleatoria
+    numElement.style.top = `${Math.random() * 100}vh`; // Posición vertical aleatoria
+    numElement.style.fontSize = `${fontSize}px`;
+    document.getElementById('numbers').appendChild(numElement);
+}
 
-
-var inputText = document.querySelector(".inputText");
-var inputmensaje = document.querySelector(".mensaje");
-
-var vocales = ["e","i","a","o","u"];
-var palabras = ["enter","imes","ai","ober","ufat"];
-
-
-function encriptar() {
-    
-    let textEncriptar = inputText.value.toLowerCase();
-    let resultado = "";
-
-    for(var i = 0; i <textEncriptar.length; i++) {
-      
-        if (vocales.indexOf(textEncriptar[i])!= -1) {
-            resultado += palabras[(vocales.indexOf(textEncriptar[i]))]
-        } else {
-            resultado += textEncriptar[i];
+// Animar los números moviéndolos hacia arriba
+setInterval(() => {
+    const numElements = document.querySelectorAll('#numbers span');
+    numElements.forEach(numElement => {
+        const top = parseFloat(numElement.style.top);
+        numElement.style.top = `${top - speed}px`;
+        if (top < -fontSize) {
+            numElement.style.top = '100vh';
         }
-        
-    }
-    document.querySelector(".muneco").style.display = "none";
-    document.querySelector(".texto1").style.display = "none";
+    });
+}, 100); // Intervalo de tiempo para la animación
 
-    inputmensaje.value = resultado
-    inputText.value = "";
-    
-}
-
-function desencriptar() {
-    let resultado = inputText.value;
-
-    for(let i = 0; i <palabras.length; i++) {
-        resultado = resultado.replaceAll(palabras[i], vocales[i]);
-
-    }
-
-    
-    inputmensaje.value = resultado;
-    inputText.value="";
+function Encriptar(){
+    var entradaTexto = document.getElementById("entradaTexto").value;
+     var encripTex = entradaTexto.replace(/a/g, 'fff')
+                                 .replace(/e/g, 'ttt')
+                                 .replace(/i/g, 'hhh')
+                                 .replace(/o/g, 'aaa')
+                                 .replace(/u/g, 'ooo');
+    document.getElementById("salidaTexto").value = encripTex;
 }
 
 
+function Desencriptar(){
+    var entradaTexto = document.getElementById("entradaTexto").value;
+   
+    var desencripText = entradaTexto.replace(/fff/g, 'a')
+                                 .replace(/ttt/g, 'e')
+                                 .replace(/hhh/g, 'i')
+                                 .replace(/aaa/g, 'o')
+                                 .replace(/ooo/g, 'u');
+    document.getElementById("salidaTexto").value = desencripText;
+}
 
-
-function copiar() {
+function copyText() {
+    var outputTextArea = document.getElementById("salidaTexto");
     
-    inputmensaje.select();
-    inputmensaje.setSelectionRange(0, 99999);
+    // Seleccionar el texto dentro del área de texto
+    outputTextArea.select();
+    
+    // Copiar el texto seleccionado al portapapeles
     document.execCommand("copy");
-    inputmensaje.value = "";
+    
+    // Deseleccionar el texto
+    window.getSelection().removeAllRanges();
 }
+
+
